@@ -146,7 +146,7 @@ const config = {
     id: '', // Please remove this and use your own tag id or keep it empty
   },
   hotjar: {
-    id: '', //  Please remove this and use your own id or keep it empty
+    id: '3088469', //  Please remove this and use your own id or keep it empty
     snippetVersion: 6,
   },
   themeConfig: {
