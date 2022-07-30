@@ -2,7 +2,7 @@
 
 const config = {
   github: {
-    username: 'arifszn', // Your GitHub org/user name. (Required)
+    username: 'jjnanthakumar', // Your GitHub org/user name. (Required)
     sortBy: 'stars', // stars | updated
     limit: 10, // How many projects to display.
     exclude: {
@@ -11,32 +11,30 @@ const config = {
     },
   },
   social: {
-    linkedin: 'ariful-alam',
-    twitter: 'arif_szn',
+    linkedin: 'nanthakumarjj',
+    twitter: '',
     facebook: '',
-    instagram: '',
+    instagram: 'jjnanthakumar',
     dribbble: '',
     behance: '',
     medium: 'arifszn',
     dev: 'arifszn',
-    website: 'https://arifszn.github.io',
+    website: 'https://jjnanthakumar.github.io',
     phone: '',
-    email: 'arifulalamszn@gmail.com',
+    email: 'jjnanthakumar477@gmail.com',
   },
   skills: [
-    'PHP',
-    'Laravel',
+    'Python',
+    'C#',
     'JavaScript',
     'React.js',
     'Node.js',
     'Nest.js',
-    'MySQL',
+    'SQL',
     'Git',
     'Docker',
-    'PHPUnit',
-    'CSS',
-    'Antd',
-    'Tailwind',
+    'CSS3',
+    'HTML5',
     'Bootstrap',
   ],
   experiences: [
