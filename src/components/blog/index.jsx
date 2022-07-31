@@ -181,11 +181,10 @@ const Blog = ({ loading, blog, googleAnalytics }) => {
           <div className="grid grid-cols-2 gap-6">
             <div className="col-span-2">
               <div
-                className={`card compact ${
-                  loading || (articles && articles.length)
+                className={`card compact ${loading || (articles && articles.length)
                     ? 'bg-gradient-to-br to-base-200 from-base-100 shadow'
                     : 'bg-base-100 shadow-lg'
-                }`}
+                  }`}
               >
                 <div className="card-body">
                   <div className="mx-3 mb-2">

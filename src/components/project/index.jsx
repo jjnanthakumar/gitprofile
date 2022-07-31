@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Fragment } from 'react';
 import { AiOutlineStar, AiOutlineFork } from 'react-icons/ai';
 import PropTypes from 'prop-types';

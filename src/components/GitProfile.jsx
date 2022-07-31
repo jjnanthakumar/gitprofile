@@ -1,15 +1,16 @@
-import axios from 'axios';
-import { Fragment, useCallback, useEffect, useState } from 'react';
-import HeadTagEditor from './head-tag-editor';
-import ErrorPage from './error-page';
-import ThemeChanger from './theme-changer';
-import AvatarCard from './avatar-card';
-import Details from './details';
-import Skill from './skill';
-import Experience from './experience';
-import Education from './education';
-import Project from './project';
-import Blog from './blog';
+/* eslint-disable prettier/prettier */
+import axios from "axios";
+import { Fragment, useCallback, useEffect, useState } from "react";
+import HeadTagEditor from "./head-tag-editor";
+import ErrorPage from "./error-page";
+import ThemeChanger from "./theme-changer";
+import AvatarCard from "./avatar-card";
+import Details from "./details";
+import Skill from "./skill";
+import Experience from "./experience";
+import Education from "./education";
+import Project from "./project";
+import Blog from "./blog";
 import {
   genericError,
   getInitialTheme,
@@ -19,18 +20,19 @@ import {
   tooManyRequestError,
   sanitizeConfig,
   skeleton,
-} from '../helpers/utils';
-import { HelmetProvider } from 'react-helmet-async';
-import PropTypes from 'prop-types';
-import '../assets/index.css';
-import { formatDistance } from 'date-fns';
+} from "../helpers/utils";
+import { HelmetProvider } from "react-helmet-async";
+import PropTypes from "prop-types";
+import "../assets/index.css";
+import { formatDistance } from "date-fns";
+import Badge from "./badge";
 
 const GitProfile = ({ config }) => {
   const [error, setError] = useState(
-    typeof config === 'undefined' && !config ? noConfigError : null
+    typeof config === "undefined" && !config ? noConfigError : null
   );
   const [sanitizedConfig] = useState(
-    typeof config === 'undefined' && !config ? null : sanitizeConfig(config)
+    typeof config === "undefined" && !config ? null : sanitizeConfig(config)
   );
   const [theme, setTheme] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +48,7 @@ const GitProfile = ({ config }) => {
   }, [sanitizedConfig]);
 
   useEffect(() => {
-    theme && document.documentElement.setAttribute('data-theme', theme);
+    theme && document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   const loadData = useCallback(() => {
@@ -57,10 +59,10 @@ const GitProfile = ({ config }) => {
 
         let profileData = {
           avatar: data.avatar_url,
-          name: data.name ? data.name : '',
-          bio: data.bio ? data.bio : '',
-          location: data.location ? data.location : '',
-          company: data.company ? data.company : '',
+          name: data.name ? data.name : "",
+          bio: data.bio ? data.bio : "",
+          location: data.location ? data.location : "",
+          company: data.company ? data.company : "",
         };
 
         setProfile(profileData);
@@ -72,16 +74,15 @@ const GitProfile = ({ config }) => {
           excludeRepo += `+-repo:${sanitizedConfig.github.username}/${project}`;
         });
 
-        let query = `user:${
-          sanitizedConfig.github.username
-        }+fork:${!sanitizedConfig.github.exclude.forks}${excludeRepo}`;
+        let query = `user:${sanitizedConfig.github.username
+          }+fork:${!sanitizedConfig.github.exclude.forks}${excludeRepo}`;
 
         let url = `https://api.github.com/search/repositories?q=${query}&sort=${sanitizedConfig.github.sortBy}&per_page=${sanitizedConfig.github.limit}&type=Repositories`;
 
         axios
           .get(url, {
             headers: {
-              'Content-Type': 'application/vnd.github.v3+json',
+              "Content-Type": "application/vnd.github.v3+json",
             },
           })
           .then((response) => {
@@ -102,10 +103,10 @@ const GitProfile = ({ config }) => {
   }, [setLoading]);
 
   const handleError = (error) => {
-    console.error('Error:', error);
+    console.error("Error:", error);
     try {
       let reset = formatDistance(
-        new Date(error.response.headers['x-ratelimit-reset'] * 1000),
+        new Date(error.response.headers["x-ratelimit-reset"] * 1000),
         new Date(),
         {
           addSuffix: true,
@@ -179,6 +180,8 @@ const GitProfile = ({ config }) => {
                   </div>
                   <div className="lg:col-span-2 col-span-1">
                     <div className="grid grid-cols-1 gap-6">
+                      {/* Certification or Badges goes here */}
+                      <Badge />
                       <Project
                         repo={repo}
                         loading={loading}
@@ -204,16 +207,16 @@ const GitProfile = ({ config }) => {
                 <div className="card compact bg-base-100 shadow">
                   <a
                     className="card-body"
-                    href="https://github.com/arifszn/gitprofile"
+                    href="https://github.com/jjnanthakumar/gitprofile"
                     target="_blank"
                     rel="noreferrer"
                   >
                     <div>
                       {loading ? (
-                        skeleton({ width: 'w-52', height: 'h-6' })
+                        skeleton({ width: "w-52", height: "h-6" })
                       ) : (
-                        <p className="font-mono text-sm">
-                          Made with{' '}
+                        <p className="font-mono text-sm" style={{ fontSize: "smaller" }}>
+                          Made with{" "}
                           <span className="text-primary">GitProfile</span> and
                           ❤️
                         </p>
@@ -234,7 +237,7 @@ GitProfile.propTypes = {
   config: PropTypes.shape({
     github: PropTypes.shape({
       username: PropTypes.string.isRequired,
-      sortBy: PropTypes.oneOf(['stars', 'updated']),
+      sortBy: PropTypes.oneOf(["stars", "updated"]),
       limit: PropTypes.number,
       exclude: PropTypes.shape({
         forks: PropTypes.bool,
@@ -293,9 +296,9 @@ GitProfile.propTypes = {
         secondary: PropTypes.string,
         accent: PropTypes.string,
         neutral: PropTypes.string,
-        'base-100': PropTypes.string,
-        '--rounded-box': PropTypes.string,
-        '--rounded-btn': PropTypes.string,
+        "base-100": PropTypes.string,
+        "--rounded-box": PropTypes.string,
+        "--rounded-btn": PropTypes.string,
       }),
     }),
   }).isRequired,
